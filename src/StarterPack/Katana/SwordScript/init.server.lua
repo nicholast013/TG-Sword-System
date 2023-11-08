@@ -124,7 +124,7 @@ function Blow(Hit)
 	local tag = character:FindFirstChild("damage")
 	if not tag and Tool.Enabled == false then
 			if CheckSwordBlock(character) == false then
-				if math.random(1,4) == 4 then
+				if math.random(1,10) == 10 then
 					humanoid:TakeDamage(DamageValues.LungeDamage)
 					Sounds.Critical:Play()
 					TagHumanoid(humanoid)
@@ -275,13 +275,11 @@ script.Parent.BlockEvent.OnServerEvent:Connect(function(plr, auth, bool)
 	end
 end)
 
-task.spawn(function()
-	while task.wait() do
-		if BlockValue.Value ~= false then
-			Tool.GripRight = Vector3.new(0, 90, -50)
-		else
-			Tool.GripRight = Vector3.new(0, 90, 0)
-		end
+BlockValue.Changed:Connect(function(v)
+	if v ~= false then
+		Tool.GripRight = Vector3.new(0, 90, -50)
+	else
+		Tool.GripRight = Vector3.new(0, 90, 0)
 	end
 end)
 

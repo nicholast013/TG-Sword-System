@@ -275,13 +275,11 @@ script.Parent.BlockEvent.OnServerEvent:Connect(function(plr, auth, bool)
 	end
 end)
 
-task.spawn(function()
-	while task.wait() do
-		if BlockValue.Value ~= false then
-			Tool.GripRight = Vector3.new(0, 90, -50)
-		else
-			Tool.GripRight = Vector3.new(0, 90, 0)
-		end
+BlockValue.Changed:Connect(function(v)
+	if v ~= false then
+		Tool.GripRight = Vector3.new(0, 90, -50)
+	else
+		Tool.GripRight = Vector3.new(0, 90, 0)
 	end
 end)
 

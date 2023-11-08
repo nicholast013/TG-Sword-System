@@ -124,7 +124,7 @@ function Blow(Hit)
 	local tag = character:FindFirstChild("damage")
 	if not tag and Tool.Enabled == false then
 			if CheckSwordBlock(character) == false then
-				if math.random(1,4) == 4 then
+				if math.random(1,2) == 2 then
 					humanoid:TakeDamage(DamageValues.LungeDamage)
 					Sounds.Critical:Play()
 					TagHumanoid(humanoid)
@@ -204,9 +204,9 @@ function Lunge()
 		end
 	end	
 	
-	wait(0.2)
+	task.wait(0.2)
 	Tool.Grip = Grips.Out
-	wait(0.6)
+	task.wait(0.6)
 	Tool.Grip = Grips.Up
 
 	Damage = DamageValues.SlashDamage
@@ -241,7 +241,7 @@ function Activated()
 		AnimationId = BaseUrl .. Animations.R15Lunge,
 		Parent = Tool
 	})
-	wait(0.5)
+	task.wait(1.5)
 	Tool.Enabled = true
 	end
 end
@@ -275,13 +275,11 @@ script.Parent.BlockEvent.OnServerEvent:Connect(function(plr, auth, bool)
 	end
 end)
 
-spawn(function()
-	while wait() do
-		if BlockValue.Value ~= false then
-			Tool.GripRight = Vector3.new(0, 90, -50)
-		else
-			Tool.GripRight = Vector3.new(0, 90, 0)
-		end
+BlockValue.Changed:Connect(function(v)
+	if v ~= false then
+		Tool.GripRight = Vector3.new(0, 90, -50)
+	else
+		Tool.GripRight = Vector3.new(0, 90, 0)
 	end
 end)
 
