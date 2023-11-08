@@ -124,7 +124,7 @@ function Blow(Hit)
 	local tag = character:FindFirstChild("damage")
 	if not tag and Tool.Enabled == false then
 			if CheckSwordBlock(character) == false then
-				if math.random(1,4) == 4 then
+				if math.random(1,2) == 2 then
 					humanoid:TakeDamage(DamageValues.LungeDamage)
 					Sounds.Critical:Play()
 					TagHumanoid(humanoid)
@@ -241,7 +241,7 @@ function Activated()
 		AnimationId = BaseUrl .. Animations.R15Lunge,
 		Parent = Tool
 	})
-	task.wait(0.5)
+	task.wait(1.5)
 	Tool.Enabled = true
 	end
 end
